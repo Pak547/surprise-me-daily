@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -22,11 +21,14 @@ body {
 }
 
 .left {
+  float: left;
   background-color: lightblue;
 }
 
 .right {
+  float: right;
   background-color: lightgreen;
+
 }
 
 .middle {
