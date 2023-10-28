@@ -10,11 +10,8 @@ const options = {
 	}
 };
 
-try {
-	const response = await fetch(url, options);
-	const result = await response.text();
-	console.log(result);
-} catch (error) {
-	console.error(error);
-}
+fetch('https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/AAPL,MSFT')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error))
 
