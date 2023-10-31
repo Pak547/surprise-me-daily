@@ -1,17 +1,15 @@
+const apiKey = "bad2585150121c9b32104915c6e8ce3f"
 
-const APIkey = "dj0yJmk9cFdhUjlwQ0VwT04wJmQ9WVdrOVZIaFJabGRTZURVbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTYw"
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={"apiKey}"
 
-const url = 'https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/AAPL,MSFT';
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': APIkey,
-		'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'
+async function getWeather() {
+	try {
+		let response = await fetch(apiUrl)
+		console.log(response);
+		if (!response.ok) throw new Error("not a valid response");
+		let data = await response.json();
+		console.log(data);
+	} catch (error) {
+		console.warn(error.message);
 	}
-};
-
-fetch('https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/AAPL,MSFT')
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error))
-
+}
