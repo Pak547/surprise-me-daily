@@ -1,0 +1,47 @@
+* {
+  margin:0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.left, .right {
+  flex: 1;
+  padding: 20px;
+}
+
+.left {
+  float: left;
+  background-color: lightblue;
+}
+
+.right {
+  float: right;
+  background-color: lightgreen;
+
+}
+
+.middle {
+  flex: 0 0 200px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
