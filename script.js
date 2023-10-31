@@ -1,6 +1,6 @@
 const apiKey = "bad2585150121c9b32104915c6e8ce3f"
 
-const apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={"apiKey}"
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${apiKey}"
 
 async function getWeather() {
 	try {
