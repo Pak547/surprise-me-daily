@@ -1,7 +1,7 @@
 
 var lon;
 var lat;
-var temperature = document.querySelector(".temp");
+var temperature = document.querySelector(".temperature");
 var summary = document.querySelector(".summary");
 var loc = document.querySelector(".location");
 const kelvin = 273;
