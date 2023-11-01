@@ -54,7 +54,7 @@
             <div class="-my-6 divide-y divide-gray-500/10">
               <div class="space-y-2 py-6">
                 <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Weather</a>
-                <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Gas Prices</a>
+                <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Find Events</a>
                 <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Contact us</a>
               </div>
             </div>
@@ -79,7 +79,21 @@
   <!-- WORK ON CONTENT HERE  -->
   <div class="container">
     <div class="left">
-        <!-- Weather API content goes here -->
+      <div class="px-4 sm:px-0">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-base font-semibold leading-7 text-gray-900">Weather</h3>
+          <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Let's see what the weather is!</p>
+        <div class="mt-6 border-t border-gray-100">
+          <dl class="divide-y divide-gray-100">
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0" id="">
+                     <!-- Weather API content goes here ABOVE IS ID TAG
+                    Created this Empty div with empty class to be injected into-->
+                <div class="text-sm font-medium leading-6 text-gray-900"></div>
+            </div>
+        </div>
+      </div>
+      </div>
+      
     </div>
 
     <div class="middle text-input">
@@ -88,11 +102,21 @@
     </div>
 
     <div class="right">
-      <div class="showEvents">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-base font-semibold leading-7 text-gray-900">Events happening in your city</h3>
+          <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Don't let weather stop your plans</p>
+        <div class="mt-6 border-t border-gray-100">
+          <dl class="divide-y divide-gray-100">
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0" id="showEvents">
+              
+                      <!-- second API content goes here -->
+            <div class="text-sm font-medium leading-6 text-gray-900" >
 
+            </div>
+            </div>
+        </div>
       </div>
   
-        <!-- second API content goes here -->
     </div>
   </div>
   <footer>
@@ -101,6 +125,6 @@
   </footer>
   <script src="./script.js"></script>
   <script type="text/javascript">getData()</script>
-  <script type="text/javascript">getWeather()</script>
+  <!--<script type="text/javascript">getWeather()</script>-->
 </body>
 </html>
