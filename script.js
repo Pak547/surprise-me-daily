@@ -1,4 +1,4 @@
-
+// la la la
 var lon;
 var lat;
 var temperature = document.querySelector(".temperature");
