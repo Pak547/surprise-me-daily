@@ -82,11 +82,17 @@ const rightIncr = function plusPlus() {
 rightArrowBtn.addEventListener('click', rightIncr)
 
 function showData() {
+  // title
   const eventData = eventList[eventIncr].name
+  //date
   const dateData = eventList[eventIncr].dates.start.localDate
+  //time
   const timeData = eventList[eventIncr].dates.start.localTime
+  // img jpg
   const picData = eventList[eventIncr].images[0].url
-  console.log(picData);
+  // buy ticket link
+  const linkData = eventList[eventIncr].url
+  console.log(eventList);
   const eventContainer = document.getElementById('showEvents');
   // reset the propagation 
   eventContainer.innerHTML = "";
@@ -98,6 +104,10 @@ function showData() {
   // shows title
   const eventTitle = document.createElement('h2');
   eventTitle.textContent = eventData
+  // buy ticket link
+  const eventLink = document.createElement('a');
+  eventLink.href = linkData
+  eventLink.textContent = eventLink.href
   //shows date in YYYY-MM-DD
   const eventDate = document.createElement('p');
   eventDate.textContent = dateData
@@ -107,6 +117,7 @@ function showData() {
   // append everything into the div as a child
   eventElement.appendChild(eventPic);
   eventElement.appendChild(eventTitle);
+  eventElement.appendChild(eventLink);
   eventElement.appendChild(eventDate);
   eventElement.appendChild(eventTime);
   // finally we propagate into the container
