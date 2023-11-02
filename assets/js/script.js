@@ -29,11 +29,42 @@ let tixCity = "Riverside";
 const tixKey = "wmaoc2ZzZXf8620JjoaSV5OEFlvJNJ84"
 const tixUrl = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + tixCity + "&apikey=" + tixKey
 // empty string populate into userInput 
-var eventIncr = 0;
+var eventIncr = "0";
+var leftArrowBtn = document.querySelector("#left-arrow");
+var rightArrowBtn = document.querySelector("#right-arrow")
 // onclick ++ .then
 // JSON.stringify to allow it to go back into the array button increment and decrement
 // each time they click the button it changes the event
 
+const leftIncr = function minusMinus(eventIncr) 
+{
+  if(eventIncr === String){
+    JSON.parse(eventIncr);
+  } else {eventIncr--}
+  return(eventIncr);
+}
+
+leftArrowBtn.addEventListener('click', leftIncr)
+
+const rightIncr = function plusPlus(eventIncr) {
+  if(eventIncr === String){
+    JSON.parse(eventIncr);
+  } else {eventIncr++}
+  while (eventIncr === Number){
+    // While this statement is true... 
+    // convert to String
+  }
+  console.log(eventIncr)
+  return(typeof eventIncr);
+}
+
+rightArrowBtn.addEventListener('click', rightIncr)
+
+// if string is true then convert to integer 
+  // else if integer is true then proceed
+  // JSON parse after button click to allow it to be changed again
+  // if event anchor is < 0 return 0
+  // if event incre is > 20 return 20
 // function to retrieve data
 async function getData() {
   try {
@@ -45,15 +76,9 @@ async function getData() {
       // bracket notation with Richard's help to call data
       let eachEvent = data["_embedded"]["events"];
       let eventData = data["_embedded"]["events"][eventIncr]["name"];
-      //var name1 = data["_embedded"]["events"]["1"]["name"];
-      //var name2 = data["_embedded"]["events"]["2"]["name"];
-      let dateData = data["_embedded"]["events"]["0"]["dates"]["start"]["localDate"];
-      // var date1 = data["_embedded"]["events"]["1"]["dates"]["start"]["localDate"];
-      // var date2 = data["_embedded"]["events"]["2"]["dates"]["start"]["localDate"];
-      let timeData = data["_embedded"]["events"]["0"]["dates"]["start"]["localTime"];
-      // var time1 = data["_embedded"]["events"]["1"]["dates"]["start"]["localTime"];
-      // var time2 = data["_embedded"]["events"]["2"]["dates"]["start"]["localTime"];
-      let picData = data["_embedded"]["events"]["0"]["images"]["0"]
+      let dateData = data["_embedded"]["events"][eventIncr]["dates"]["start"]["localDate"];
+      let timeData = data["_embedded"]["events"][eventIncr]["dates"]["start"]["localTime"];
+      let picData = data["_embedded"]["events"][eventIncr]["images"]["0"]
 
       console.log(eachEvent);
       console.log(eventData);
@@ -87,24 +112,10 @@ async function getData() {
         eventElement.appendChild(eventTime);
 
         eventContainer.appendChild(eventElement);
-
       }
     }
     // catching the error
   } catch (error) {
     console.warn(error.message);
   }
-}
-addEventListener.onclick("#left-arrow"); {
-  eventIncr--;
-  JSON.stringify(eventIncr)
-}
-addEventListener.onclick("#right-arrow"); {
-  eventIncr++;
-  JSON.stringify(eventIncr)
-  // if string is true then convert to integer 
-  // else if integer is true then proceed
-  // JSON parse after button click to allow it to be changed again
-  // if event anchor is < 0 return 0
-  // if event incre is > 20 return 20
 }
