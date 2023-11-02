@@ -1,57 +1,68 @@
 //Weather API
+var searchInput = document.querySelector(".search")
+var searchButton = document.querySelector(".start-btn")
 var temperature = document.querySelector(".temperature");
 var summary = document.querySelector(".summary");
 var loc = document.querySelector(".location");
 
-var cityName = "Long Beach";
+var cityName = "San Jose";
 const weatherKey = "bad2585150121c9b32104915c6e8ce3f"; // not best practice
-const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + weatherKey;
 
-function handleWeatherResponse(data){
+function handleWeatherResponse(data) {
   console.log(data);
+  console.log("cityName : " + cityName)
   temperature.textContent = Math.floor(data.main.temp) + "°F";
   summary.textContent = data.weather[0].description;
   loc.textContent = data.name + "," + data.sys.country;
   document.querySelector("#current-weather").setAttribute("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + ".png");
-} 
+}
 
-fetch(weatherUrl)
-  .then(function(response){
-    return response.json();
-  })
-  .then(handleWeatherResponse);
+function searchWeather(cityName) {
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${weatherKey}`)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(handleWeatherResponse);
+}
 
-  // Tasnim code above here
-  
-  let tixCity = "Long Beach";
-  const tixKey = "wmaoc2ZzZXf8620JjoaSV5OEFlvJNJ84" // not best practice
-  const tixUrl = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + tixCity + "&apikey=" + tixKey
-  
-  // empty array because the api array to then reassign on line 105
-  let eventList = [];
-  let eventIncr = 0;
-  const leftArrowBtn = document.querySelector("#left-arrow");
-  const rightArrowBtn = document.querySelector("#right-arrow")
-  
-  const leftIncr = function minusMinus() {
-    // creating limit
-    if(eventIncr > 0){
-      eventIncr--;
-      console.log(eventIncr);
-      showData();
-    } else {
-      eventIncr = 0
-      console.log(eventIncr);
-    }
+searchButton.addEventListener("click", function (event) {
+  event.preventDefault()
+  cityName = searchInput.value.trim()
+  console.log("cityName : " + cityName)
+  searchWeather(cityName)
+})
+
+// Tasnim code above here
+
+let tixCity = "Long Beach";
+const tixKey = "wmaoc2ZzZXf8620JjoaSV5OEFlvJNJ84" // not best practice
+const tixUrl = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + tixCity + "&apikey=" + tixKey
+
+// empty array because the api array to then reassign on line 105
+let eventList = [];
+let eventIncr = 0;
+const leftArrowBtn = document.querySelector("#left-arrow");
+const rightArrowBtn = document.querySelector("#right-arrow")
+
+const leftIncr = function minusMinus() {
+  // creating limit
+  if (eventIncr > 0) {
+    eventIncr--;
+    console.log(eventIncr);
+    showData();
+  } else {
+    eventIncr = 0
+    console.log(eventIncr);
+  }
 }
 leftArrowBtn.addEventListener('click', leftIncr)
 
 const rightIncr = function plusPlus() {
   // creating a limit
-  if ( eventIncr < 19){
-  eventIncr++;
-  console.log(eventIncr);
-  showData();
+  if (eventIncr < 19) {
+    eventIncr++;
+    console.log(eventIncr);
+    showData();
   } else {
     eventIncr = 19
     console.log(eventIncr);
@@ -71,36 +82,36 @@ const rightIncr = function plusPlus() {
 }
 rightArrowBtn.addEventListener('click', rightIncr)
 
-function showData () {
-      const eventData = eventList[eventIncr].name
-      const dateData = eventList[eventIncr].dates.start.localDate
-      const timeData = eventList[eventIncr].dates.start.localTime
-      const picData = eventList[eventIncr].images[0].url
-      console.log(picData);
-      const eventContainer = document.getElementById('showEvents');
-      // reset the propagation 
-      eventContainer.innerHTML = "";
-        const eventElement = document.createElement('div');
-        eventElement.className = 'event';
-        // shows picture, note .src
-        const eventPic = document.createElement('img');
-        eventPic.src = picData
-        // shows title
-        const eventTitle = document.createElement('h2');
-        eventTitle.textContent = eventData
-        //shows date in YYYY-MM-DD
-        const eventDate = document.createElement('p');
-        eventDate.textContent = dateData
-        // shows time in military
-        const eventTime = document.createElement('p');
-        eventTime.textContent = timeData
-        // append everything into the div as a child
-        eventElement.appendChild(eventPic);
-        eventElement.appendChild(eventTitle);
-        eventElement.appendChild(eventDate);
-        eventElement.appendChild(eventTime);
-        // finally we propagate into the container
-        eventContainer.appendChild(eventElement);
+function showData() {
+  const eventData = eventList[eventIncr].name
+  const dateData = eventList[eventIncr].dates.start.localDate
+  const timeData = eventList[eventIncr].dates.start.localTime
+  const picData = eventList[eventIncr].images[0].url
+  console.log(picData);
+  const eventContainer = document.getElementById('showEvents');
+  // reset the propagation 
+  eventContainer.innerHTML = "";
+  const eventElement = document.createElement('div');
+  eventElement.className = 'event';
+  // shows picture, note .src
+  const eventPic = document.createElement('img');
+  eventPic.src = picData
+  // shows title
+  const eventTitle = document.createElement('h2');
+  eventTitle.textContent = eventData
+  //shows date in YYYY-MM-DD
+  const eventDate = document.createElement('p');
+  eventDate.textContent = dateData
+  // shows time in military
+  const eventTime = document.createElement('p');
+  eventTime.textContent = timeData
+  // append everything into the div as a child
+  eventElement.appendChild(eventPic);
+  eventElement.appendChild(eventTitle);
+  eventElement.appendChild(eventDate);
+  eventElement.appendChild(eventTime);
+  // finally we propagate into the container
+  eventContainer.appendChild(eventElement);
 }
 
 async function getData() {
@@ -115,5 +126,5 @@ async function getData() {
   } catch (error) {
     console.warn(error.message);
   }
-} 
+}
 getData();
