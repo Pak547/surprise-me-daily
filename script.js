@@ -1,4 +1,37 @@
-/*
+
+var lon;
+var lat;
+var temperature = document.querySelector(".temperature");
+var summary = document.querySelector(".summary");
+var loc = document.querySelector(".location");
+const kelvin = 273;
+
+window.addEventListener("load", () => {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition((position) => {
+			lon = position.coords.longitude;
+			lat = position.coords.latitude;
+
+			const api = "bad2585150121c9b32104915c6e8ce3f";
+
+			const base =
+				`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&` + `lon=${lon}&appid=bad2585150121c9b32104915c6e8ce3f`;
+
+			fetch(base)
+				.then((response) => {
+					return response.json();
+				})
+				.then((data) => {
+					console.log(data);
+					temperature.textContent = Math.floor(data.main.temp - kelvin) + "°C";
+					summary.textContent = data.weather[0].description;
+					loc.textContent = data.name + "," + data.sys.country;
+					document.querySelector("#current-weather").setAttribute("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + ".png");
+				});
+		});
+	}
+});
+
 const weatherKey = "bad2585150121c9b32104915c6e8ce3f"
 let cityName = "";
 const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q="+ cityName + "&units=imperial&appid=" + weatherKey
@@ -13,7 +46,7 @@ async function getWeather() {
 		console.warn(error.message);
 	}
 }
-*/
+
 
 // Tasnim code above here
 

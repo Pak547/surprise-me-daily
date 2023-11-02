@@ -54,3 +54,18 @@ footer {
   background-color:  burlywood;
 }
 
+.weatherL {
+  height: 15rem;
+  width: 35rem;
+  background-color: rgba(152, 228, 165, 0.577);
+  text-align: center;
+  padding-top: 20px;
+  margin-left: 25px;
+  border-radius: 30px;
+  border: 2px solid rgb(14, 43, 1);
+}
+
+img {
+  width: 80px;
+  margin: auto;
+}
