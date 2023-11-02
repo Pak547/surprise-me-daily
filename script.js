@@ -4,7 +4,6 @@ var lat;
 var temperature = document.querySelector(".temperature");
 var summary = document.querySelector(".summary");
 var loc = document.querySelector(".location");
-const kelvin = 273;
 
 window.addEventListener("load", () => {
 	if (navigator.geolocation) {
@@ -23,7 +22,7 @@ window.addEventListener("load", () => {
 				})
 				.then((data) => {
 					console.log(data);
-					temperature.textContent = Math.floor(data.main.temp - kelvin) + "°C";
+					temperature.textContent = Math.floor(data.main.temp) + "°F";
 					summary.textContent = data.weather[0].description;
 					loc.textContent = data.name + "," + data.sys.country;
 					document.querySelector("#current-weather").setAttribute("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + ".png");
