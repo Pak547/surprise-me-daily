@@ -71,7 +71,7 @@ footer {
   border: 2px solid rgb(14, 43, 1);
 }
 
-img {
-  width: 80px;
+#current-weather {
+  width: 160px;
   margin: auto;
 }
