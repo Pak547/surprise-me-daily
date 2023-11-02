@@ -3,9 +3,8 @@ var temperature = document.querySelector(".temperature");
 var summary = document.querySelector(".summary");
 var loc = document.querySelector(".location");
 
-const weatherKey = "bad2585150121c9b32104915c6e8ce3f"
 var cityName = "London";
-const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + weatherKey
+const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + WEATHER_KEY;
 
 function handleWeatherResponse(data){
   console.log(data);
