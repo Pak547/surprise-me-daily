@@ -1,0 +1,1 @@
+const WEATHER_KEY = "bad2585150121c9b32104915c6e8ce3f"
