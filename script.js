@@ -7,19 +7,21 @@ const weatherKey = "bad2585150121c9b32104915c6e8ce3f"
 var cityName = "London";
 const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + weatherKey
 
+function handleWeatherResponse(data){
+  console.log(data);
+  temperature.textContent = Math.floor(data.main.temp) + "°F";
+  summary.textContent = data.weather[0].description;
+  loc.textContent = data.name + "," + data.sys.country;
+  document.querySelector("#current-weather").setAttribute("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + ".png");
+} 
+
 fetch(weatherUrl)
-  .then((response){
+  .then(function(response){
     return response.json();
   })
-  .then((data){
-    console.log(data);
-    temperature.textContent = Math.floor(data.main.temp) + "°F";
-    summary.textContent = data.weather[0].description;
-    loc.textContent = data.name + "," + data.sys.country;
-    document.querySelector("#current-weather").setAttribute("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + ".png");
-  });
+  .then(handleWeatherResponse);
 
-
+// psuedo code
 // Tasnim code above here
 
 
