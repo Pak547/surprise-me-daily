@@ -4,7 +4,8 @@ var summary = document.querySelector(".summary");
 var loc = document.querySelector(".location");
 
 var cityName = "London";
-const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + WEATHER_KEY;
+const weatherKey = "bad2585150121c9b32104915c6e8ce3f"; // not best practice
+const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + weatherKey;
 
 function handleWeatherResponse(data){
   console.log(data);
