@@ -52,7 +52,7 @@ const leftIncr = function minusMinus() {
   if (eventIncr > 0) {
     eventIncr--;
     console.log(eventIncr);
-    showData();
+    getData();
   } else {
     eventIncr = 0
     console.log(eventIncr);
@@ -65,7 +65,7 @@ const rightIncr = function plusPlus() {
   if (eventIncr < 19) {
     eventIncr++;
     console.log(eventIncr);
-    showData();
+    getData();
   } else {
     eventIncr = 19
     console.log(eventIncr);
