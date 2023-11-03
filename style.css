@@ -2,71 +2,69 @@
   margin:0px;
   padding: 0px;
   box-sizing: border-box;
+  font-size: 20px;
 }
 
-input{
-  border: 0;
-  outline: 0;
-  background: #fdffeb;
-  color: #090909;
-  font-size: 18px;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
-  height: 60vh;
+.hero {
+  background-image: url("./assets/images/background.jpg");
+  background-position: center;
 }
 
 
-.middle {
-  flex: 0 0 200px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+#left-column {
+  max-width: auto;
+  max-height: auto;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+#right-column {
+  max-width: auto;
+  max-height: auto;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.innerImage {
+ height: auto;
+ max-width: 75%;
+}
+
+.innerAnchor {
+font-size: 12px;
+color: blue;
+}
+
+#start-btn {
+  margin-top: 30px;
+}
+
+
+/* TITLE ANIMATION STARTS HERE */
+.animate-charcter
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #1f0874 0%,
+    #5910a8 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 3.2s linear infinite;
+  display: inline-block;
   align-items: center;
+  justify-content: center;
+  font-size: 58px;
 }
 
-.text-input {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-
-footer {
-  margin-top: 60px;
-  margin-bottom: 60px;
-  background-color:  burlywood;
-}
-
-.weatherL {
-  height: 15rem;
-  width: 35rem;
-  background-color: rgba(152, 228, 165, 0.577);
-  text-align: center;
-  padding-top: 20px;
-  margin-left: 25px;
-  border-radius: 30px;
-  border: 2px solid rgb(14, 43, 1);
-}
-
-#current-weather {
-  width: 160px;
-  margin: auto;
-}
-
-#logo {
-  border-radius: 4px;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.card {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
 }

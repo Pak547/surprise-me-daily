@@ -5,6 +5,7 @@ var temperature = document.querySelector(".temperature");
 var summary = document.querySelector(".summary");
 var loc = document.querySelector(".location");
 
+
 var cityName = "";
 const weatherKey = "bad2585150121c9b32104915c6e8ce3f"; // not best practice
 
@@ -16,13 +17,15 @@ function handleWeatherResponse(data) {
   document.querySelector("#current-weather").setAttribute("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + ".png");
 }
 
+JSON.parse(localStorage.getItem("Saved cities", cityName));
+
 function searchWeather(cityName) {
   console.log("searching weather")
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${weatherKey}`)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(handleWeatherResponse);
+  .then(function (response) {
+    return response.json();
+  })
+  .then(handleWeatherResponse);
 }
 // Im gonna adjust to fit in ticketmaster city value
 
@@ -38,6 +41,8 @@ searchButton.addEventListener("click", function (event) {
   searchWeather(cityName)
   console.log("getting ticket data")
   getData(cityName)
+  localStorage.setItem("Saved cities", JSON.stringify(cityName));
+
 })
 // empty array because the api array to then reassign on line 105
 // this array is causing the search input to not work properly because the list is going into the array
@@ -128,12 +133,14 @@ function showData(eventList) {
   // shows picture, note .src
   const eventPic = document.createElement('img');
   eventPic.src = picData
+  eventPic.className = 'innerImg'
   // shows title
   const eventTitle = document.createElement('h2');
   eventTitle.textContent = eventData
   // buy ticket link
   const eventLink = document.createElement('a');
   eventLink.href = linkData
+  eventLink.className = 'innerAnchor'
   eventLink.textContent = eventLink.href
   //shows date in YYYY-MM-DD
   const eventDate = document.createElement('p');
@@ -150,3 +157,40 @@ function showData(eventList) {
   // finally we propagate into the container
   eventContainer.appendChild(eventElement);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Functions to open and close a modal
+  function openModal($el) {
+    $el.classList.add('is-active');
+  }
+  function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
+  function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+  }
+  // Add a click event on buttons to open a specific modal
+  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+    $trigger.addEventListener('click', () => {
+      openModal($target);
+    });
+  });
+  // Add a click event on various child elements to close the parent modal
+  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+    const $target = $close.closest('.modal');
+    $close.addEventListener('click', () => {
+      closeModal($target);
+    });
+  });
+  // Add a keyboard event to close all modals
+  document.addEventListener('keydown', (event) => {
+    if (event.code === 'Escape') {
+      closeAllModals();
+    }
+  });
+});
+
