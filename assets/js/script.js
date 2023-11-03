@@ -5,7 +5,7 @@ var temperature = document.querySelector(".temperature");
 var summary = document.querySelector(".summary");
 var loc = document.querySelector(".location");
 
-var cityName = "San Jose";
+var cityName = "";
 const weatherKey = "bad2585150121c9b32104915c6e8ce3f"; // not best practice
 
 function handleWeatherResponse(data) {
@@ -23,22 +23,27 @@ function searchWeather(cityName) {
     })
     .then(handleWeatherResponse);
 }
+// Im gonna adjust to fit in ticketmaster city value
+
+// Tasnim code above here
+
+let tixCity = "";
+const tixKey = "wmaoc2ZzZXf8620JjoaSV5OEFlvJNJ84" // not best practice
+const tixUrl = `https://app.ticketmaster.com/discovery/v2/events.json?city=${tixCity}&apikey=${tixKey}`
 
 searchButton.addEventListener("click", function (event) {
   event.preventDefault()
   cityName = searchInput.value.trim()
+  tixCity = searchInput.value.trim()
   console.log("cityName : " + cityName)
+  console.log("Ticketname"+ tixCity)
   searchWeather(cityName)
+  getData(tixCity)
 })
-
-// Tasnim code above here
-
-let tixCity = "Long Beach";
-const tixKey = "wmaoc2ZzZXf8620JjoaSV5OEFlvJNJ84" // not best practice
-const tixUrl = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + tixCity + "&apikey=" + tixKey
-
 // empty array because the api array to then reassign on line 105
+// this array is causing the search input to not work properly because the list is going into the array
 let eventList = [];
+console.log("empty array " + eventList)
 let eventIncr = 0;
 const leftArrowBtn = document.querySelector("#left-arrow");
 const rightArrowBtn = document.querySelector("#right-arrow")
@@ -81,18 +86,40 @@ const rightIncr = function plusPlus() {
 }
 rightArrowBtn.addEventListener('click', rightIncr)
 
+
+async function getData() {
+  try {
+    const response = await fetch(tixUrl);
+    // if theres an error then say not valid and show status
+    if (response.ok) {
+      const data = await response.json();
+      eventList = data._embedded.events;
+      console.log(eventList)
+      showData();
+    }
+  } catch (error) {
+    console.warn(error.message);
+  }
+}
+
 function showData() {
+  // let eventList = [];
   // title
   const eventData = eventList[eventIncr].name
+  // const eventData = data._embedded.events[eventIncr].name
   //date
   const dateData = eventList[eventIncr].dates.start.localDate
+  // const dateData = data._embedded.events[eventIncr].dates.start.localDate
   //time
   const timeData = eventList[eventIncr].dates.start.localTime
+  // const timeData = data._embedded.events[eventIncr].dates.start.localTime
   // img jpg
   const picData = eventList[eventIncr].images[0].url
+  //  const picData = data._embedded.events[eventIncr].images[0].url
   // buy ticket link
-  const linkData = eventList[eventIncr].url
-  console.log(eventList);
+   const linkData = eventList[eventIncr].url
+  // const linkData = data._embedded.events[eventIncr].images[0].url
+  //console.log(eventList);
   const eventContainer = document.getElementById('showEvents');
   // reset the propagation 
   eventContainer.innerHTML = "";
@@ -123,18 +150,3 @@ function showData() {
   // finally we propagate into the container
   eventContainer.appendChild(eventElement);
 }
-
-async function getData() {
-  try {
-    const response = await fetch(tixUrl);
-    // if theres an error then say not valid and show status
-    if (response.ok) {
-      const data = await response.json();
-      eventList = data._embedded.events;
-      showData();
-    }
-  } catch (error) {
-    console.warn(error.message);
-  }
-}
-getData();
