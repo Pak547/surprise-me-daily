@@ -89,7 +89,7 @@ color: blue;
     #1f0874 0%,
     #5910a8 29%,
     #ff1361 67%,
-    #fff800 100%
+    rgb(0, 153, 255) 100%
   );
   background-size: auto auto;
   background-clip: border-box;
