@@ -20,11 +20,8 @@
 }
 
 #left-column {
-  max-width: auto;
-  max-height: auto;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  border: 20px;
-  padding: 20px;
+  box-shadow: rgb(6, 160, 255) 0px 0px 0px 3px;
+
 }
 
 #search {
@@ -56,7 +53,7 @@ margin-right: 8px;
 #right-column {
   max-width: auto;
   max-height: auto;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgb(183, 0, 255) 0px 0px 0px 3px;
   border: 20px;
   padding: 20px;
 }
@@ -81,7 +78,7 @@ color: blue;
 
 
 /* TITLE ANIMATION STARTS HERE */
-.animate-charcter
+.animate-character
 {
    text-transform: uppercase;
   background-image: linear-gradient(
