@@ -5,7 +5,6 @@ var temperature = document.querySelector(".temperature");
 var summary = document.querySelector(".summary");
 var loc = document.querySelector(".location");
 
-
 var cityName = "";
 const weatherKey = "bad2585150121c9b32104915c6e8ce3f"; // not best practice
 
@@ -17,8 +16,6 @@ function handleWeatherResponse(data) {
   document.querySelector("#current-weather").setAttribute("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + ".png");
 }
 
-JSON.parse(localStorage.getItem("Saved cities", cityName));
-
 function searchWeather(cityName) {
   console.log("searching weather")
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${weatherKey}`)
@@ -27,9 +24,8 @@ function searchWeather(cityName) {
   })
   .then(handleWeatherResponse);
 }
-// Im gonna adjust to fit in ticketmaster city value
-
 // Tasnim code above here
+// Below is ticketmaster 
 
 const TIX_KEY = "wmaoc2ZzZXf8620JjoaSV5OEFlvJNJ84" // not best practice
 const TIX_BASE_PATH = `https://app.ticketmaster.com/discovery/v2/events.json`;
@@ -41,16 +37,17 @@ searchButton.addEventListener("click", function (event) {
   searchWeather(cityName)
   console.log("getting ticket data")
   getData(cityName)
-  localStorage.setItem("Saved cities", JSON.stringify(cityName));
-
-})
+  localStorage.setItem("Saved Cities", JSON.stringify(cityName));
+  localStorage.setItem("Saved Events", JSON.stringify(eventList));
+}
+)
 // empty array because the api array to then reassign on line 105
 // this array is causing the search input to not work properly because the list is going into the array
 let eventList = [];
 // console.log("empty array " + eventList)
 let eventIncr = 0;
 const leftArrowBtn = document.querySelector("#left-arrow");
-const rightArrowBtn = document.querySelector("#right-arrow")
+const rightArrowBtn = document.querySelector("#right-arrow");
 
 const leftIncr = function minusMinus() {
   // creating limit
@@ -90,13 +87,11 @@ const rightIncr = function plusPlus() {
 }
 rightArrowBtn.addEventListener('click', rightIncr)
 
-
 async function getData() {
   try {
     const tixUrl = TIX_BASE_PATH + `?city=${cityName}&apikey=${TIX_KEY}`
     console.log("tixurl data", tixUrl)
     const response = await fetch(tixUrl);
-    // if theres an error then say not valid and show status
     if (response.ok) {
       console.log("if response ok")
       const data = await response.json();
@@ -112,19 +107,15 @@ function showData(eventList) {
   console.log("event list", eventList)
   // title
   const eventData = eventList[eventIncr].name
-  // const eventData = data._embedded.events[eventIncr].name
   //date
   const dateData = eventList[eventIncr].dates.start.localDate
-  // const dateData = data._embedded.events[eventIncr].dates.start.localDate
   //time
   const timeData = eventList[eventIncr].dates.start.localTime
-  // const timeData = data._embedded.events[eventIncr].dates.start.localTime
   // img jpg
   const picData = eventList[eventIncr].images[0].url
-  //  const picData = data._embedded.events[eventIncr].images[0].url
   // buy ticket link
-   const linkData = eventList[eventIncr].url
-  // const linkData = data._embedded.events[eventIncr].images[0].url
+  const linkData = eventList[eventIncr].url
+  // beginning of html inject
   const eventContainer = document.getElementById('showEvents');
   // reset the propagation 
   eventContainer.innerHTML = "";
@@ -157,40 +148,3 @@ function showData(eventList) {
   // finally we propagate into the container
   eventContainer.appendChild(eventElement);
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Functions to open and close a modal
-  function openModal($el) {
-    $el.classList.add('is-active');
-  }
-  function closeModal($el) {
-    $el.classList.remove('is-active');
-  }
-  function closeAllModals() {
-    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-      closeModal($modal);
-    });
-  }
-  // Add a click event on buttons to open a specific modal
-  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-    const modal = $trigger.dataset.target;
-    const $target = document.getElementById(modal);
-    $trigger.addEventListener('click', () => {
-      openModal($target);
-    });
-  });
-  // Add a click event on various child elements to close the parent modal
-  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-    const $target = $close.closest('.modal');
-    $close.addEventListener('click', () => {
-      closeModal($target);
-    });
-  });
-  // Add a keyboard event to close all modals
-  document.addEventListener('keydown', (event) => {
-    if (event.code === 'Escape') {
-      closeAllModals();
-    }
-  });
-});
-
