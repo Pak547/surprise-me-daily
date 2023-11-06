@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-
+<html class="hero">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,19 +12,7 @@
   <link rel="stylesheet" type="text/css" href="./style.css">
   </link>
 </head>
-
 <body>
-  <section class="hero is-info is-fullheight-with-navbar">
-    <div class="hero-head">
-      <nav class="navbar">
-        <div class="container">
-          <div class="navbar-brand">
-            <a class="navbar-item logo" href="../">
-              <img class="logo" src="./assets/images/SkyScan-logos_transparent.png" alt="Logo">
-            </a>
-          </div>
-        </div>
-    </div>
     </nav>
     </div>
     <section class="hero is-link py-4">
@@ -38,7 +25,6 @@
     <section class="container p-5">
       <div class="columns is-vcentered is-justify-content-space-evenly"> 
       <div class="card column is-one-third">
-
         <div class="card-image">
           <figure class="image is-4by3">
             <img src=" " id="current-weather">
@@ -59,11 +45,7 @@
 
           <div class="middle text-input">
             <input class="search input is-medium" id="search" type="text" placeholder="Search City Name">
-            <!--  Previous text input box here to compare
-                    <input type="text" id="search" class="search" placeholder="Search City Name">
-                 -->
-            <button class="start-btn button is-medium" id="start-btn" role="button" type="submit"><span
-                class="text">Start Scan</span></button>
+            <button class="start-btn button is-medium" id="start-btn" role="button" type="submit"><span class="text">Start Scan</span></button>
           </div>
         </div>
       </div>
@@ -84,19 +66,6 @@
         </div>
       </div>
     </section>
-
-  <div id="modal-js-example" class="modal">
-    <div class="modal-background"></div>
-
-    <div class="modal-content">
-      <div class="box">
-        <p>That's not what we were expecting... try another input!</p>
-      </div>
-    </div>
-
-    <button class="modal-close is-large" aria-label="close"></button>
-  </div>
   <script src="./assets/js/script.js"></script>
 </body>
-
 </html>
