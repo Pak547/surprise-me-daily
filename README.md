@@ -21,15 +21,20 @@ Provide instructions and examples for use. Include screenshots as needed.
 
 To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative file path, add it to your README using the following syntax:
 
-![Alt text](assets/images/Step1.png)
+![Alt text](<assets/images/demo 1.png>)
 Once loaded into the application, type in any US city and click the 'Start Scan' button
 
-![Alt text](assets/images/Step2.png)
+![Alt text](<assets/images/demo 2.png>)
 Results for the city should then show onto the page
 
-![Alt text](assets/images/Step3.png)
+![Alt text](<assets/images/demo 3.png>)
 Utilize the previous and next buttons on the events section to scroll through 19 options
 
+![Alt text](assets/images/Localstorage-1.png)
+Local storage demo 1
+
+![Alt text](assets/images/Localstorage-2.png)
+Local storage appends to list 
 ## Credits
 
 https://github.com/thalim-glam
@@ -39,7 +44,7 @@ Partner
 
 MIT License
 
-Copyright (c) 2023 Pakapong Mongkol
+Copyright (c) 2023 Pakapong Mongkol , Tasnim Halim
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
