@@ -4,6 +4,9 @@ var searchButton = document.querySelector(".start-btn")
 var temperature = document.querySelector(".temperature");
 var summary = document.querySelector(".summary");
 var loc = document.querySelector(".location");
+const savedCities = JSON.parse(localStorage.getItem("Saved Cities")) || []
+const selectElement = document.querySelector("#search-dropdown")
+const inputElement = document.querySelector("#search")
 
 var cityName = "";
 const weatherKey = "bad2585150121c9b32104915c6e8ce3f"; // not best practice
@@ -24,21 +27,39 @@ function searchWeather(cityName) {
   })
   .then(handleWeatherResponse);
 }
-// Tasnim code above here
+
 // Below is ticketmaster 
 
 const TIX_KEY = "wmaoc2ZzZXf8620JjoaSV5OEFlvJNJ84" // not best practice
 const TIX_BASE_PATH = `https://app.ticketmaster.com/discovery/v2/events.json`;
+selectElement.addEventListener("change", function(){
+  const selectedCity = selectElement.value
+  if(selectedCity){
+    searchWeather(selectedCity)
+    getData(selectedCity)
+  }
+})
 
 searchButton.addEventListener("click", function (event) {
   event.preventDefault()
-  cityName = searchInput.value.trim()
+  cityName = inputElement.value.trim()
   console.log("cityName : " + cityName)
-  searchWeather(cityName)
-  console.log("getting ticket data")
-  getData(cityName)
-  localStorage.setItem("Saved Cities", JSON.stringify(cityName));
-  localStorage.setItem("Saved Events", JSON.stringify(eventList));
+  if(cityName){
+    if(!savedCities.includes(cityName)){
+      savedCities.push(cityName)
+      localStorage.setItem("Saved Cities",JSON.stringify(savedCities))
+      const option = document.createElement("option")
+      option.value = cityName
+      option.textContent = cityName
+      selectElement.appendChild(option)
+    }
+    selectElement.value = cityName
+    searchWeather(cityName)
+    getData(cityName)
+  }
+
+localStorage.setItem("Saved Cities", JSON.stringify(cityName));
+localStorage.setItem("Saved Events", JSON.stringify(eventList));
 }
 )
 // empty array because the api array to then reassign on line 105
@@ -147,4 +168,11 @@ function showData(eventList) {
   eventElement.appendChild(eventTime);
   // finally we propagate into the container
   eventContainer.appendChild(eventElement);
+}
+
+for(i = 0; i<savedCities.length; i++){
+  const option = document.createElement("option")
+  option.value = savedCities[i]
+  option.textContent = savedCities[i] 
+  selectElement.appendChild(option)
 }

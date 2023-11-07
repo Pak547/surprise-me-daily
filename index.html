@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="hero">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,18 +13,19 @@
   <link rel="stylesheet" type="text/css" href="./style.css">
   </link>
 </head>
+
 <body>
-    </nav>
+  </nav>
+  </div>
+  <section class="hero is-link py-4">
+    <div class="hero-body">
+      <p class="title">
+        Current Weather and Events
+      </p>
     </div>
-    <section class="hero is-link py-4">
-      <div class="hero-body">
-        <p class="title">
-          Current Weather and Events
-        </p>
-      </div>
-    </section>
-    <section class="container p-5">
-      <div class="columns is-vcentered is-justify-content-space-evenly"> 
+  </section>
+  <section class="container p-5">
+    <div class="columns is-vcentered is-justify-content-space-evenly">
       <div class="card column is-one-third" id="left-column">
         <div class="card-image">
           <figure class="image is-4by3">
@@ -44,28 +46,33 @@
           <h3 class="animate-character title">SkyScan</h3>
 
           <div class="middle text-input">
-            <input class="search input is-medium" id="search" type="text" placeholder="Search City Name">
-            <button class="start-btn button is-medium" id="start-btn" role="button" type="submit"><span class="text">Start Scan</span></button>
+            <input class="search input is-medium" id="search" type="text" placeholder="Search City Name"/>
+            <select class="search input is-medium" id="search-dropdown" type="text" placeholder="Search City Name">
+
+            </select>
+            <button class="start-btn button is-medium" id="start-btn" role="button" type="submit"><span
+                class="text">Start Scan</span></button>
           </div>
         </div>
       </div>
-        <!-- This is right section-->
-        <div class="card column is-mobile" id="right-column">
-          <div class="card-image">
-            <figure class="image is-3by3">
-            </figure>
-          </div>
-          <div class="right">
-            <div class="px-4 sm:px-0">
-              <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0" id="showEvents">
-              </div>
+      <!-- This is right section-->
+      <div class="card column is-mobile" id="right-column">
+        <div class="card-image">
+          <figure class="image is-3by3">
+          </figure>
+        </div>
+        <div class="right">
+          <div class="px-4 sm:px-0">
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0" id="showEvents">
             </div>
           </div>
-          <button class="button is-link" id="left-arrow">Previous</button>
-          <button class="button is-link" id="right-arrow">Next</button>
         </div>
+        <button class="button is-link" id="left-arrow">Previous</button>
+        <button class="button is-link" id="right-arrow">Next</button>
       </div>
-    </section>
+    </div>
+  </section>
   <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
