@@ -2,13 +2,6 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
-
 Everyone's been a victim of weather ruining their plans. Especially as someone who likes to do things spontaneously, I also realize that weather is a notable consideration when going out. So when I want to search for things to do in my city, i'll also be prompted the weather to decide how possible it'll be or what apparel i'll wear depending on the situation. By having the weather alongside potential events, it'll help you plan out your day. This was our first time implementing two API's and using one input value for both. Each API is different and so documentation and due diligence is important to master each API.
 
 ## Installation
